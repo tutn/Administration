@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F8AB20C5-CDFD-4E14-A280-7DA1FECACED6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Administration.Model</RootNamespace>
+    <AssemblyName>Administration.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administration\SYS_USERS.cs" />
+    <Compile Include="Administration\SYS_DIMDATE.cs" />
+    <Compile Include="Administration\SYS_GROUPS.cs" />
+    <Compile Include="Administration\SYS_GROUP_USERS.cs" />
+    <Compile Include="Administration\SYS_PAGES.cs" />
+    <Compile Include="Administration\SYS_PARAMETERS.cs" />
+    <Compile Include="Administration\SYS_PERMISSIONS.cs" />
+    <Compile Include="Administration\SYS_PROVINCES.cs" />
+    <Compile Include="Administration\SYS_ROLES.cs" />
+    <Compile Include="Administration\SYS_UNITS.cs" />
+    <Compile Include="Administration\SYS_UNIT_USERS.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\DrpItem.cs" />
+    <Compile Include="Common\PagingOption.cs" />
+    <Compile Include="Common\PagingResult.cs" />
+    <Compile Include="Common\Result.cs" />
+    <Compile Include="Configuration\SystemConfiguration.cs" />
+    <Compile Include="Enums\CategoryType.cs" />
+    <Compile Include="Enums\CommonType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\EmailUtils.cs" />
+    <Compile Include="Utilities\Extensions.cs" />
+    <Compile Include="Utilities\IdentityHelper.cs" />
+    <Compile Include="Utilities\SHAUtils.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
