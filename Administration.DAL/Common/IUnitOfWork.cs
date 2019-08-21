@@ -9,6 +9,7 @@ namespace Administration.DAL.Common
         AdminDbContext DbContext { get; }
         #region System
         IRepository<TBL_SYS_DIMDATE, int> DimDateRepository { get; }
+        IParameterRepository ParameterRepository { get; }
         //IPageRepository PageRepository { get; }
         IUnitRepository UnitRepository { get; }
         IUserRepository UserRepository { get; }

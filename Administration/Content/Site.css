@@ -1,7 +1,7 @@
 ﻿.table > caption + thead > tr:first-child > td, .table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > td, .table > thead:first-child > tr:first-child > th {
-    background-color: darkgreen;
+    background-color: #008d4c;
     color: white;
-    border: 1px solid darkgreen;
+    border: 1px solid #008d4c;
 }
 
 .table > tbody > tr > td {

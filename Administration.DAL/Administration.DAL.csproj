@@ -70,10 +70,12 @@
     <Compile Include="Entities\TBL_SYS_UNITS.cs" />
     <Compile Include="Entities\TBL_SYS_UNIT_USERS.cs" />
     <Compile Include="Entities\TBL_SYS_USERS.cs" />
+    <Compile Include="IRepositories\IParameterRepository .cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRepositories\IUnitRepository.cs" />
     <Compile Include="IRepositories\IUserRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
+    <Compile Include="Repositories\ParameterRepository .cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

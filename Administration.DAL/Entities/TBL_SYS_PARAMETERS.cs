@@ -10,13 +10,15 @@ namespace Administration.DAL.Entities
     {
         public int ID { get; set; }
 
-        public int? VALUE { get; set; }
+        [StringLength(64)]
+        public string TYPE { get; set; }
 
         [StringLength(256)]
         public string NAME { get; set; }
 
-        [StringLength(64)]
-        public string TYPE { get; set; }
+        public int? VALUE { get; set; }
+
+        public int? ORDER_NO { get; set; }
 
         public int? USED_STATE { get; set; }
 

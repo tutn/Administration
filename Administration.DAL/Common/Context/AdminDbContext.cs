@@ -12,7 +12,6 @@ namespace Administration.DAL.Entities
         {
         }
 
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TBL_SYS_GROUP_USERS> TBL_SYS_GROUP_USERS { get; set; }
         public virtual DbSet<TBL_SYS_GROUPS> TBL_SYS_GROUPS { get; set; }
         public virtual DbSet<TBL_SYS_PAGES> TBL_SYS_PAGES { get; set; }

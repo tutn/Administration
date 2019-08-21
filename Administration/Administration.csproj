@@ -139,11 +139,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIs\UnitController.cs" />
+    <Compile Include="APIs\ParameterController.cs" />
     <Compile Include="APIs\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ParameterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -225,6 +227,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\css\adminlte.css.map" />
     <Content Include="Content\css\adminlte.min.css.map" />
+    <Content Include="Scripts\angular\Administration\parameterApp.js" />
     <Content Include="Scripts\angular\angular-route.js" />
     <Content Include="Scripts\angular\angular-route.min.js" />
     <Content Include="Scripts\angular\Administration\unitApp.js" />
@@ -267,6 +270,7 @@
     <None Include="packages.config" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Scripts\angular\angular-route.min.js.map" />
+    <Content Include="Views\Parameter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Administration.BAL\Administration.BAL.csproj">

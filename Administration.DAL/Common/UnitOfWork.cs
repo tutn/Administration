@@ -49,6 +49,17 @@ namespace Administration.DAL.Common
             }
         }
 
+        private IParameterRepository _parameterRepository;
+        public IParameterRepository ParameterRepository
+        {
+            get
+            {
+                if (this._parameterRepository == null)
+                    this._parameterRepository = new ParameterRepository(_context);
+                return _parameterRepository;
+            }
+        }
+
         //private IPageRepository _pageRepository;
         //public IPageRepository PageRepository
         //{

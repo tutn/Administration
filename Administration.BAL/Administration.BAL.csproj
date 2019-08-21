@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IManagers\IUnitManager.cs" />
+    <Compile Include="IManagers\IParameterManager.cs" />
     <Compile Include="IManagers\IUserManager.cs" />
     <Compile Include="Managers\UnitManager.cs" />
+    <Compile Include="Managers\ParameterManager.cs" />
     <Compile Include="Managers\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
