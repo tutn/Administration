@@ -117,12 +117,16 @@ function parameterController($scope, adminService) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
-                //if ($scope.Items === null || $scope.Items == undefined || $scope.Items === '') {
-                //    $scope.Items = [];
-                //}
+                if ($scope.Items === null || $scope.Items == undefined || $scope.Items === '') {
+                    $scope.Items = [];
+                }
+                var status = $scope.Status.find(x => x.Value === d.data.Data.USED_STATE);
+                d.data.Data.USEDSTATE_NAME = status.Name;
+                $scope.Items.push(d.data.Data);
+                $scope.Total += 1; 
                 //$scope.Items.unshift(d.data.Data);
                 $('#dialogModal').modal('hide');
-                $scope.getData();
+                //$scope.getData();
                 DisplayMessage('Success', 'User has been added successfully.'); // Success
             } else {
                 DisplayServerErrorMessage(d.data.Message); // Failed
@@ -139,11 +143,16 @@ function parameterController($scope, adminService) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
-                //var currentRecord = _.first(_.where($scope.Items, { "ID": record.ID }));
-                //var index = $scope.Items.indexOf(currentRecord);
-                //$scope.Items[index] = angular.copy(record);
+
+                var status = $scope.Status.find(x => x.Value === record.USED_STATE);
+                record.USEDSTATE_NAME = status.Name;
+
+                var currentRecord = $scope.Items.find(x => x.ID === record.ID);
+                var index = $scope.Items.indexOf(currentRecord);
+                $scope.Items[index] = angular.copy(record);
+
                 $('#dialogModal').modal('hide');
-                $scope.getData();
+                //$scope.getData();
                 DisplayMessage('Success', 'User has been updated successfully.'); // Success
             } else {
                 DisplayServerErrorMessage(d.data.Message); // Failed
