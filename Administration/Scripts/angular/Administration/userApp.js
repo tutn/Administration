@@ -17,23 +17,21 @@ function userController($scope, cbdService, Upload) {
 
     $scope.init = function () {
         $scope.UsedState();
-        $scope.clear(false);
+        $scope.clear();
     }
 
-    $scope.clear = function (isreset) {
+    $scope.clear = function () {
         $scope.sUserName = '';
         $scope.sFullName = '';
         $scope.sEmail = '';
-        if (isreset === true) {
-            $scope.sStatus =  undefined;
-        }
+        $scope.sStatus =  undefined;
 
         $scope.username = "";
         $scope.password = "";
         $scope.fullname = "";
         $scope.email = "";
         $scope.files = "";
-        $scope.status = '';
+        $scope.status = undefined;
     }
 
     $scope.setPageSize = function (pageSize) {
@@ -49,6 +47,7 @@ function userController($scope, cbdService, Upload) {
     $scope.UsedState = function () {
         $scope.Status.push({ Value: 1, Name: 'Actived' });
         $scope.Status.push({ Value: 2, Name: 'Inactived' });
+        $scope.status = '';
     }
 
     //Called from on-data-required directive.
@@ -58,11 +57,12 @@ function userController($scope, cbdService, Upload) {
     }
 
     $scope.search = function () {
+        ShowLoader();
         $scope.getData();
     }
 
     $scope.getData = function () {
-        ShowLoader();
+        //ShowLoader();
         let options = {
             USER_NAME: $scope.sUserName, FULL_NAME: $scope.sFullName, EMAIL: $scope.sEmail, USED_STATE: $scope.sStatus === null || $scope.sStatus === undefined ? 0 : $scope.sStatus, PageSize: $scope.pageSize, PageNumber: $scope.pageNumber, OrderBy: $scope.orderby, IsDesc: $scope.isdesc
         };
@@ -132,7 +132,6 @@ function userController($scope, cbdService, Upload) {
         else {
             $scope.add(record);
         }
-        $scope.clear();
     };
 
     $scope.add = function (record) {
@@ -141,10 +140,14 @@ function userController($scope, cbdService, Upload) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
+                var status = $scope.Status.find(x => x.Value === d.data.Data.USED_STATE);
+                d.data.Data.USEDSTATE_NAME = status.Name;
+                $scope.Items.push(d.data.Data);
+                $scope.Total += 1; 
 
-
+                $scope.clear();
                 $('#dialogModal').modal('hide');
-                $scope.getData();
+
                 DisplayMessage('Success', 'User has been added successfully.'); // Success
             } else {
                 DisplayServerErrorMessage(d.data.Message); // Failed
@@ -161,11 +164,16 @@ function userController($scope, cbdService, Upload) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
-                //var currentRecord = _.first(_.where($scope.Items, { "ID": record.ID }));
-                //var index = $scope.Items.indexOf(currentRecord);
-                //$scope.Items[index] = angular.copy(record);
+                var status = $scope.Status.find(x => x.Value === record.USED_STATE);
+                record.USEDSTATE_NAME = status.Name;
+
+                var currentRecord = $scope.Items.find(x => x.ID === record.ID);
+                var index = $scope.Items.indexOf(currentRecord);
+                $scope.Items[index] = angular.copy(record);
+
+                $scope.clear();
                 $('#dialogModal').modal('hide');
-                $scope.getData();
+
                 DisplayMessage('Success', 'User has been updated successfully.'); // Success
             } else {
                 DisplayServerErrorMessage(d.data.Message); // Failed
@@ -182,11 +190,11 @@ function userController($scope, cbdService, Upload) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
-                //var index = $scope.Items.indexOf(record);
-                //if (index > -1) {
-                //    $scope.Items.splice(index, 1);
-                //}
-                $scope.getData();
+                var index = $scope.Items.indexOf(record);
+                if (index > -1) {
+                    $scope.Items.splice(index, 1);
+                }
+
                 DisplayMessage('Success', 'User has been deleted successfully.'); // Success
             } else {
                 DisplayServerErrorMessage(d.data.Message); // Failed

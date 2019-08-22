@@ -20,7 +20,7 @@ namespace Administration.Administration.ControllerAPIs
     public class ParameterController : ApiController
     {
         private readonly IParameterManager _manager;
-        private string WebUrl;
+        private readonly string WebUrl;
         private readonly string appDomain = HttpRuntime.AppDomainAppPath;
 
         public ParameterController()

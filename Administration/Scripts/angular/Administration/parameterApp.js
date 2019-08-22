@@ -17,7 +17,7 @@ function parameterController($scope, adminService) {
 
     $scope.init = function () {
         $scope.UsedState();
-        $scope.clear(false);
+        $scope.clear();
     }
 
     $scope.clear = function (isreset) {
@@ -108,7 +108,6 @@ function parameterController($scope, adminService) {
         else {
             $scope.add(record);
         }
-        $scope.clear();
     };
 
     $scope.add = function (record) {
@@ -124,7 +123,8 @@ function parameterController($scope, adminService) {
                 d.data.Data.USEDSTATE_NAME = status.Name;
                 $scope.Items.push(d.data.Data);
                 $scope.Total += 1; 
-                //$scope.Items.unshift(d.data.Data);
+
+                $scope.clear();
                 $('#dialogModal').modal('hide');
                 //$scope.getData();
                 DisplayMessage('Success', 'User has been added successfully.'); // Success
@@ -151,8 +151,9 @@ function parameterController($scope, adminService) {
                 var index = $scope.Items.indexOf(currentRecord);
                 $scope.Items[index] = angular.copy(record);
 
+                $scope.clear();
                 $('#dialogModal').modal('hide');
-                //$scope.getData();
+
                 DisplayMessage('Success', 'User has been updated successfully.'); // Success
             } else {
                 DisplayServerErrorMessage(d.data.Message); // Failed

@@ -10,8 +10,8 @@ namespace Administration.DAL.Repositories
 {
     public class ParameterRepository : Repository<TBL_SYS_PARAMETERS, int>, IParameterRepository
     {
-        private Repository<TBL_SYS_PARAMETERS, int> _repository;
-        private DbSet<TBL_SYS_PARAMETERS> _dbSet;
+        private readonly Repository<TBL_SYS_PARAMETERS, int> _repository;
+        private readonly DbSet<TBL_SYS_PARAMETERS> _dbSet;
         private readonly AdminDbContext _dbContext;
 
         public ParameterRepository(AdminDbContext dbContext)

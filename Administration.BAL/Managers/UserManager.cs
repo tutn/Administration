@@ -70,7 +70,7 @@ namespace Administration.BAL.Managers
                         return result;
                     }
 
-                    data = unitOfWork.UserRepository.FirstOrDefault(x => x.USER_NAME.Equals(model.USER_NAME));
+                    data = unitOfWork.UserRepository.FirstOrDefault(x => x.USER_NAME.Equals(model.USER_NAME) || x.EMAIL.Equals(model.EMAIL));
                     if (data != null)
                     {
                         result.Code = (short)HttpStatusCode.Conflict;
@@ -93,11 +93,12 @@ namespace Administration.BAL.Managers
                     unitOfWork.UserRepository.Add(data);
                     unitOfWork.SaveChanges();
 
-                }
+                    result.Code = (short)HttpStatusCode.OK;
+                    result.Data = data;
+                    result.Message = string.Format("The User Added successfully!");
+                    return result;
 
-                result.Code = (short)HttpStatusCode.OK;
-                result.Message = string.Format("The User Added successfully!");
-                return result;
+                }
             }
             catch (Exception ex)
             {
