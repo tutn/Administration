@@ -57,4 +57,13 @@ namespace Administration.Model
         public string USEDSTATE_NAME { get; set; }
         
     }
+
+    public partial class Login
+    {
+        public string USER_NAME { get; set; }
+
+        public string PASSWORD { get; set; }
+
+        public bool IS_REMEMBER { get; set; }
+    }
 }
