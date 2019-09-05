@@ -1,8 +1,8 @@
 ﻿var app = angular.module("app", ['trNgGrid']);
 app.controller("unitController", unitController);
-app.$inject = ["$scope", "cbdService"];
+app.$inject = ["$scope", "adminService"];
 
-function unitController($scope, cbdService) {
+function unitController($scope, adminService) {
     $scope.pageNumber = 0;
     $scope.pageSize = 10;
     $scope.orderby = "";
@@ -75,7 +75,7 @@ function unitController($scope, cbdService) {
         let options = {
             CODE: $scope.sCode, NAME: $scope.sName, PARENT_ID: $scope.sParentid === null || $scope.sParentid === undefined ? null : $scope.sParentid, USED_STATE: $scope.sStatus === null || $scope.sStatus === undefined ? 0 : $scope.sStatus, PageSize: $scope.pageSize, PageNumber: $scope.pageNumber, OrderBy: $scope.orderby, IsDesc: $scope.isdesc
         };
-        cbdService.getData(options).then(function (d) {
+        adminService.getData(options).then(function (d) {
             $scope.Items = d.data.Data;
             $scope.Total = d.data.Total;
             // Success
@@ -122,7 +122,7 @@ function unitController($scope, cbdService) {
     $scope.add = function (record) {
 
         ShowLoader();
-        cbdService.AddRecord(record).then(function (d) {
+        adminService.AddRecord(record).then(function (d) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
@@ -141,7 +141,7 @@ function unitController($scope, cbdService) {
 
     $scope.update = function (record) {
         ShowLoader();
-        cbdService.UpdateRecord(record).then(function (d) {
+        adminService.UpdateRecord(record).then(function (d) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
@@ -162,7 +162,7 @@ function unitController($scope, cbdService) {
 
     $scope.deleteRecord = function (record) {
         ShowLoader();
-        cbdService.DeleteRecord(record).then(function (d) {
+        adminService.DeleteRecord(record).then(function (d) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
@@ -184,7 +184,7 @@ function unitController($scope, cbdService) {
 
     $scope.getAllUnits = function (record) {
         //ShowLoader();
-        cbdService.GetAllUnits(record).then(function (d) {
+        adminService.GetAllUnits(record).then(function (d) {
             // Success
             //HideLoader();
             $scope.Units = d.data.Data;
@@ -195,7 +195,7 @@ function unitController($scope, cbdService) {
     }
 }
 
-app.factory('cbdService', ["$http", "baseUrl", function ($http, baseUrl) {
+app.factory('adminService', ["$http", "baseUrl", function ($http, baseUrl) {
     var fac = {};
     fac.getData = function (options) {
         return $http.get(baseUrl + '/api/Unit/Search?CODE=' + options.CODE + '&NAME=' + options.NAME + '&PARENT_ID=' + options.PARENT_ID + '&USED_STATE=' + options.USED_STATE + '&PageSize=' + options.PageSize + '&PageNumber=' + options.PageNumber + '&OrderBy=' + options.OrderBy + '&IsDesc=' + options.IsDesc);
