@@ -8,6 +8,8 @@ namespace Administration.Controllers
 {
     public class UserController : Controller
     {
+
+        [Authorize]
         public ActionResult Index()
         {
             return View();
