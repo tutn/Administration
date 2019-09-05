@@ -1,0 +1,1 @@
+http://www.decatechlabs.com/secure-webapi-using-jwt

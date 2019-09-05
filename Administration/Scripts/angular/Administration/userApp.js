@@ -1,8 +1,8 @@
 ﻿var app = angular.module("app", ['trNgGrid', 'ngFileUpload']);
 app.controller("userController", userController);
-app.$inject = ["$scope", "cbdService"];
+app.$inject = ["$scope", "adminService"];
 
-function userController($scope, cbdService, Upload) {
+function userController($scope, adminService, Upload) {
     $scope.pageNumber = 0;
     $scope.pageSize = 10;
     $scope.orderby = "";
@@ -66,7 +66,7 @@ function userController($scope, cbdService, Upload) {
         let options = {
             USER_NAME: $scope.sUserName, FULL_NAME: $scope.sFullName, EMAIL: $scope.sEmail, USED_STATE: $scope.sStatus === null || $scope.sStatus === undefined ? 0 : $scope.sStatus, PageSize: $scope.pageSize, PageNumber: $scope.pageNumber, OrderBy: $scope.orderby, IsDesc: $scope.isdesc
         };
-        cbdService.getData(options).then(function (d) {
+        adminService.getData(options).then(function (d) {
             $scope.Items = d.data.Data;
             $scope.Total = d.data.Total;
             // Success
@@ -136,7 +136,7 @@ function userController($scope, cbdService, Upload) {
 
     $scope.add = function (record) {
         ShowLoader();
-        cbdService.AddRecord(record).then(function (d) {
+        adminService.AddRecord(record).then(function (d) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
@@ -160,7 +160,7 @@ function userController($scope, cbdService, Upload) {
 
     $scope.update = function (record) {
         ShowLoader();
-        cbdService.UpdateRecord(record).then(function (d) {
+        adminService.UpdateRecord(record).then(function (d) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
@@ -186,7 +186,7 @@ function userController($scope, cbdService, Upload) {
 
     $scope.deleteRecord = function (record) {
         ShowLoader();
-        cbdService.DeleteRecord(record).then(function (d) {
+        adminService.DeleteRecord(record).then(function (d) {
             // Success
             HideLoader();
             if (d.data.Code === 200) {
@@ -208,7 +208,7 @@ function userController($scope, cbdService, Upload) {
 
 }
 
-app.factory('cbdService', ["$http", "baseUrl", function ($http, baseUrl) {
+app.factory('adminService', ["$http", "baseUrl", function ($http, baseUrl) {
     var fac = {};
     fac.getData = function (options) {
         return $http.get(baseUrl + '/api/User/Search?USER_NAME=' + options.USER_NAME + '&FULL_NAME=' + options.FULL_NAME + '&EMAIL=' + options.EMAIL + '&USED_STATE=' + options.USED_STATE + '&PageSize=' + options.PageSize + '&PageNumber=' + options.PageNumber + '&OrderBy=' + options.OrderBy + '&IsDesc=' + options.IsDesc);
